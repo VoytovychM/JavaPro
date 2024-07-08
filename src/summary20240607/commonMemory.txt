@@ -1,0 +1,21 @@
+String value = "value";
+
+1 thread read
+2 thread read
+-----> no synch
+
+1 thread read
+2 thread write value = "new value";
+-----> no synch, volatile
+
+1 thread read
+2 thread write value = value + "new value";
+-----> no synch, volatile
+
+1 thread write value = "new value";
+2 thread write value = "new value2";
+-----> no synch, volatile
+
+1 thread write value = value + "new value";
+2 thread write value = value + "new value";
+-----> AtomicReference, synchronized, ReentrantLock
